@@ -4,34 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
     <title>Momentum App</title>
 </head>
 <body>
-    <form id="login-form" class = "hidden">
-        <input required maxlength="15" type="text" placeholder="What is your name?" />
-        <button>Log In</button>
-    </form>
-    <h1 id="greeting" class="hidden"></h1>
-    <h2 id="clock">00:00:00</h2>
-    <div>
-        <h3>Todo List</h3>
-        <form id="todo-form">
-            <input required type="text" placeholder="Write a Todo and Press Enter!" />
-        </form>
-        <ul id="todo-list"></ul>
-    </div>
-    <div id="quote">
-        <span></span>
-        <br>
-        <span></span>
-    </div>
-    <div id="weather-container">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+    
+    <main>
+        <div class="user-container">
+            <form id="login-form" class = "hidden">
+                <input required maxlength="15" type="text" placeholder="What is your name?" />
+                <button>Log In</button>
+            </form>
+            <h1 id="greeting" class="hidden"></h1>
+        </div>
+        <div class="clock-container">
+            <h2 id="clock">00:00:00</h2>
+        </div>
+        <div class="todo-container">
+            <h3>Todo List</h3>
+            <form id="todo-form">
+                <input required type="text" placeholder="Write a Todo and Press Enter!" />
+            </form>
+            <ul id="todo-list"></ul>
+        </div>
+    </main>
+
+    <footer>
+        <div id="quote">
+            <span></span>
+            <br>
+            <span></span>
+        </div>
+        <div id="weather-container">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </footer>
     <script src="js/greetings.js"></script>
     <script src="js/clock.js"></script>
     <script src="js/quotes.js"></script>
