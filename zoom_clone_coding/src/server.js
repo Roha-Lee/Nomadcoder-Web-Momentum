@@ -1,5 +1,4 @@
 import http from 'http';
-import WebSocket from 'ws';
 import express from 'express';
 
 const app = express();
@@ -14,14 +13,25 @@ const handleListen = () => console.log('Listening on http://localhost:3000');
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server }); // 이렇게 해야 http, wss둘다 같은 포트에서 돌릴수 있다.
 wss.on('connection', (socket) => {
+  socket.nickname = 'Anonymous';
   sockets.push(socket);
+
   console.log('Connected to Browser.');
   socket.on('close', () => {
     console.log('Disconnect from Browser.');
   });
-  socket.on('message', (message) => {
-    console.log(`New message: ${message}`);
-    sockets.forEach((aSocket) => aSocket.send(message));
+  socket.on('message', (msg) => {
+    const message = JSON.parse(msg);
+    switch (message.type) {
+      case 'new_message':
+        sockets.forEach((aSocket) => aSocket.send(`${socket.nickname}: ${message.payload}`));
+        break;
+      case 'nickname':
+        socket.nickname = message.payload;
+        break;
+      default:
+        break;
+    }
   });
 });
 server.listen(3000, handleListen);
