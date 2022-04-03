@@ -33,7 +33,7 @@ const handleAdd = () => {
 }
 
 const handleSubtract = () => {
-  countStore.dispatch({type: SUBTRACT})
+  countStore.dispatch({type: SUBTRACT});
 }
 // dispatch를 부르면 redux가 countModifier(currentState, {type: "ADD"})를 호출한다. 
 add.addEventListener('click', handleAdd);
