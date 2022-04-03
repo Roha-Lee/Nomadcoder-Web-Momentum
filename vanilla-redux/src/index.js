@@ -8,7 +8,6 @@ const number = document.querySelector('span');
 // 두번째 매개변수인 action을 통해 값을 바꾸는 작업을 한다. 
 // store.dispatch를 이용해서 action을 보낼 수 있다.
 const countModifier = (count = 0, action) => {
-  console.log(count, action);
   if(action.type === "ADD") {
     return count + 1;
   } 
@@ -20,14 +19,20 @@ const countModifier = (count = 0, action) => {
   }
 }
 
+const onChange = () => {
+  number.innerText = countStore.getState();
+}
+
 const countStore = createStore(countModifier);
+countStore.subscribe(onChange);
 
+const handleAdd = () => {
+  countStore.dispatch({type: 'ADD'});
+}
+
+const handleSubtract = () => {
+  countStore.dispatch({type: 'SUBTRACT'})
+}
 // dispatch를 부르면 redux가 countModifier(currentState, {type: "ADD"})를 호출한다. 
-countStore.dispatch({type: "ADD"});
-countStore.dispatch({type: "ADD"});
-countStore.dispatch({type: "ADD"});
-countStore.dispatch({type: "ADD"});
-countStore.dispatch({type: "ADD"});
-countStore.dispatch({type: "SUBTRACT"});
-
-console.log(countStore.getState())
+add.addEventListener('click', handleAdd);
+subtract.addEventListener('click', handleSubtract);
